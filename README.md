@@ -1,16 +1,91 @@
-# React + Vite
+# Enterprise AI Workflow Platform
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Enterprise AI Workflow Platform is a React and FastAPI application for managing projects, tasks, reports, decisions, and AI-assisted workflow operations.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Dashboard with workflow summaries and decision analysis
+- Project and task management views
+- AI assistant interface
+- Reports and decision scanning
+- Authentication-aware frontend routing
+- FastAPI backend with modular route, security, database, and service layers
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- React 19
+- Vite
+- React Router
+- FastAPI
+- MongoDB integration
 
-## Expanding the Oxlint configuration
+## Project Structure
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+```text
+enterprise-ai-demo/
+|-- Backend/
+|   |-- database/       Database connections and MongoDB helpers
+|   |-- models/         Backend data models
+|   |-- routes/         Authentication, projects, tasks, reports, and AI routes
+|   |-- security/       Authentication and request dependencies
+|   `-- services/       Decision automation services
+|-- public/              Static frontend assets
+|-- src/
+|   |-- components/      Shared UI components
+|   `-- pages/           Dashboard, projects, tasks, reports, and settings pages
+|-- package.json
+`-- vite.config.js
+```
+
+## Prerequisites
+
+- Node.js 18 or newer
+- Python 3.10 or newer
+- MongoDB, if required by the configured backend data access
+
+## Frontend Setup
+
+From the project root:
+
+```bash
+npm install
+npm run dev
+```
+
+The frontend runs at `http://localhost:5173` and expects the API at `http://localhost:8000`.
+
+Useful commands:
+
+```bash
+npm run build
+npm run lint
+npm run preview
+```
+
+## Backend Setup
+
+From the project root:
+
+```bash
+cd Backend
+python -m venv venv
+```
+
+Activate the virtual environment, install the backend dependencies configured for your environment, and start FastAPI:
+
+```bash
+# Windows PowerShell
+.\venv\Scripts\Activate.ps1
+
+uvicorn main:app --reload --port 8000
+```
+
+The API root is `http://localhost:8000/`, and the health check is available at `http://localhost:8000/health`.
+
+## Authentication
+
+The frontend stores the access token in browser local storage after login and sends it as a Bearer token to protected API endpoints. Configure the backend authentication and database settings for your local environment before using protected workflows.
+
+## License
+
+This project is licensed under the MIT License.
